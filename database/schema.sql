@@ -4,7 +4,6 @@ create table products(
     id_product int auto_increment, primary key(id_product),
     name_product varchar(50) not null,
     price int not null,
-    director varchar(20) not null,
     stock int not null,
     id_brand int not null,
     createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
@@ -17,3 +16,5 @@ create table brands (
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE 
     CURRENT_TIMESTAMP
 );
+select * from brands;
+select * from products;

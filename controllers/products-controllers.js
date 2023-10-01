@@ -1,9 +1,9 @@
 import { ProductsModel } from '../models/product-model.js'
-import { validateProduct, validatePartialProduct } from '../validations/products.js'
+import { validateProduct, validatePartialProduct } from '../zod validations/products.js'
 
 export class ProductController {
     static async getAllProducts(req, res) {
-        const movies = await ProductsModel.getAllProducts
+        const movies = await ProductsModel.getAllProducts()
         res.json(movies)
 }
     static async getProductById (req, res){
