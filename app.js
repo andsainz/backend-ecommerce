@@ -2,14 +2,17 @@ import express, { json } from 'express';
 import cors from 'cors';
 import db from './database/db.js';
 import { productsRouter } from './routes/products-router.js';
+import { brandsRouter } from './routes/brands-router.js';
+
 const app = express()
 
 app.disable('x-powered-by')
 app.use(cors())
 app.use(json())
-const PORT = process.env.PORT ?? 3000
-
 app.use('/products', productsRouter)
+app.use('/brands', brandsRouter)
+
+const PORT = process.env.PORT ?? 3000
 
 async function checkDatabaseConnection() {
 	try {

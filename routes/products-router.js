@@ -3,12 +3,12 @@ import { ProductController } from "../controllers/products-controllers.js";
 
 export const productsRouter = Router()
 
-productsRouter.get('/', ProductController.getAll)
+productsRouter.get('/', ProductController.getAllProducts)
 
-productsRouter.get('/:id', ProductController.getById)
+productsRouter.get('/:id', ProductController.getProductById)
 
-productsRouter.post('/', ProductController.create)
+productsRouter.post('/', ProductController.createProduct)
 
-productsRouter.delete('/:id', ProductController.delete)
+productsRouter.delete('/:id', ProductController.deleteProduct)
 
-productsRouter.patch('/:id', ProductController.update)
+productsRouter.patch('/:id', ProductController.updateProduct)
