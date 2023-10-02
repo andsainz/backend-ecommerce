@@ -25,7 +25,7 @@ export class ProductController {
         const id = req.params.id
         const result = await ProductModel.destroy({where: {id:req.params.id}})
         if(result === false) return res.status(404).json({ message: 'product not found' })
-        return res.json({ message: 'product deleted' })
+        return res.status(200).json({ message: 'product deleted' })
     }
     
     static async updateProduct(req, res) {
@@ -36,6 +36,6 @@ export class ProductController {
             return res.status(400).json({error: JSON.parse(result.error.message)})
         }
         const updatedProduct = await ProductModel.update(result, {where: {id: req.params.id}})
-        return res.json({message: 'your product has been updated suscesfully!'})
+        return res.status(200).json({message: 'your product has been updated suscesfully!'})
     }
 }
