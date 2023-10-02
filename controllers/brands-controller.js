@@ -1,4 +1,4 @@
-import BrandModel from "../models/brand-model";
+import BrandModel from "../models/brand-model.js";
 
 export class BrandController {
     static async getAllBrands(req, res) {
