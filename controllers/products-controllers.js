@@ -1,44 +1,41 @@
-import { ProductsModel } from '../models/product-model.js'
-import { validateProduct, validatePartialProduct } from '../zod validations/products.js'
+import ProductModel from '../models/product-model.js'
 
 export class ProductController {
     static async getAllProducts(req, res) {
-        const movies = await ProductsModel.getAllProducts()
-        res.json(movies)
+        const product = await ProductModel.findAll()
+        res.json(product)
 }
     static async getProductById (req, res){
-            const { id } = req.params.id;
-            const product = await ProductsModel.getProductById({id})
+            const id = req.params.id;
+            const product = await ProductModel.findByPk(id)
             if(product) return res.json(product)
             res.status(404).json({message: 'product not found'})
     }
 
     static async createProduct (req, res) {
-        const result = validateProduct(req.body)
+        const result = req.body
         if(result.error){
             return res.status(400).json({error: JSON.parse(result.error.message)})
         }
-        const newProduct = await ProductsModel.createProduct({input: result.data})
+        const newProduct = await ProductModel.create(result)
         res.status(201).json(newProduct)
     }
 
     static async deleteProduct(req, res) {
-        const { id } = req.params
-        const result = await ProductsModel.deleteProduct({id})
+        const id = req.params.id
+        const result = await ProductModel.destroy({where: {id:req.params.id}})
         if(result === false) return res.status(404).json({ message: 'product not found' })
         return res.json({ message: 'product deleted' })
     }
     
     static async updateProduct(req, res) {
     
-        const result = validatePartialProduct(req.body)
+        const result =req.body
     
         if(result.error){
             return res.status(400).json({error: JSON.parse(result.error.message)})
         }
-    
-        const { id } = req.params
-        const updatedProduct = await ProductsModel.updateProduct({id, input: result.data})
-        return res.json(updatedProduct)
+        const updatedProduct = await ProductModel.update(result, {where: {id: req.params.id}})
+        return res.json({message: 'your product has been updated suscesfully!'})
     }
 }
