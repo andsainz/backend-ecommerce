@@ -4,7 +4,7 @@ import db from './database/db.js';
 import { productsRouter } from './routes/products-router.js';
 import { brandsRouter } from './routes/brands-router.js';
 
-const app = express()
+export const app = express()
 
 app.disable('x-powered-by')
 app.use(cors())
@@ -24,5 +24,5 @@ async function checkDatabaseConnection() {
 }
 checkDatabaseConnection();
 
-app.listen(PORT, () =>
+export const server = app.listen(PORT, () =>
 console.log(`listening port ${PORT}`))

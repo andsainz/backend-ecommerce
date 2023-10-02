@@ -18,7 +18,7 @@ export class ProductController {
             return res.status(400).json({error: JSON.parse(result.error.message)})
         }
         const newProduct = await ProductModel.create(result)
-        res.status(201).json(newProduct)
+        res.status(201).json({message: 'The product has been created successfully!'})
     }
 
     static async deleteProduct(req, res) {
